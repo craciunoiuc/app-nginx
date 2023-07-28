@@ -26,7 +26,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - uses: "https://kraftkit.sh/github-action@v0"
+    - uses: craciunoiuc/github-action@latest
       with:
         workdir: .
         
