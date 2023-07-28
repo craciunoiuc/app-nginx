@@ -26,7 +26,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - uses: craciunoiuc/github-action@latest
+    - uses: kraftkit.sh/github-action@v1
       with:
         workdir: .
         arch: ${{ matrix.arch }}
