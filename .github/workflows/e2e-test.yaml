@@ -1,0 +1,39 @@
+name: app/nginx
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+    paths:
+    - '.github/workflows/e2e-test.yaml'
+
+jobs:
+  build-and-run:
+    strategy:
+      matrix:
+        include:
+        - version: 1.15.6
+          name: nginx
+          arch: x86_64
+          plat: qemu
+          latest: true
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: craciunoiuc/kraftkit@latest
+      with:
+        workdir: .
+        
+        arch: ${{ matrix.arch }}
+        plat: ${{ matrix.plat }}
+        name: ${{ format("test_{0}", matrix.name) }}
+        execute: true
+        push: false
+        output: oci://index.unikraft.io/unikraft.org/${{ matrix.name }}:${{ matrix.version }}
+        rootfs: library/nginx/rootfs
+        kconfig: true
