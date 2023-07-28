@@ -32,7 +32,7 @@ jobs:
         
         arch: ${{ matrix.arch }}
         plat: ${{ matrix.plat }}
-        name: ${{ format("test_{0}", matrix.name) }}
+        name: ${{ matrix.name }}
         execute: true
         push: false
         output: oci://index.unikraft.io/unikraft.org/${{ matrix.name }}:${{ matrix.version }}
