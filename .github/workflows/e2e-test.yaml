@@ -29,7 +29,6 @@ jobs:
     - uses: craciunoiuc/github-action@latest
       with:
         workdir: .
-        
         arch: ${{ matrix.arch }}
         plat: ${{ matrix.plat }}
         name: ${{ matrix.name }}
